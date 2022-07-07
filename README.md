@@ -12,12 +12,13 @@ SO THAT I can publish articles, blog posts, and my thoughts and opinions.
 
 ## Table of Contents 
 
-* [Usage](#usage)
+* [Usage](#usage)                     
 * [Credits](#credits)
 * [License](#license)
 
+#
+## Usage
 
-## Usage 
 
 Clone the repo, navigate to the root folder, run the following commands from the CLI:     
 
@@ -29,11 +30,11 @@ Seed DB;
 
 Start Server;     
 `npm start server`     
-
+#
 ## Credits
 
 
-I follow the Model-View-Controller paradigm. I use the express-handlebars (Links to an external site.) package to use Handlebars.js for my Views, I used the MySQL2 (Links to an external site.) and Sequelize (Links to an external site.) packages to connect to my MySQL database for my Models, and I created an Express.js API for your Controllers.
+I follow the Model-View-Controller paradigm. I use the express-handlebars (Links to an external site.) package to use Handlebars.js for my Views, I used the MySQL2 (Links to an external site.) and Sequelize (Links to an external site.) packages to connect to my MySQL database for my Models, and I created an Express.js API for my Controllers.
 
 Andre Blankholm
 #
