@@ -1,39 +1,40 @@
 
-const path = require("path");
-const express = require("express");
-const exphbs = require("express-handlebars"); //handelbars
-const session = require("express-session"); // session for cookies
+const path = require('path');
+const express = require('express');
+const session = require('express-session');
+const exphbs = require('express-handlebars');
+const routes = require('./controllers');
+const helpers = require('./utils/helpers');
+
+const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const sequelize = require("./config/connection");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const hbs = exphbs.create({ helpers });
 
 const sess = {
-  secret: "youwillneverhack",
-  cookie: {},
+  secret: 'youwillneverhack',
+  cookie: { maxAge: 36000000 },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize,
-  }),
+    db: sequelize
+  })
 };
 
-app.use(session(sess)); //middleware for cookie handling
+app.use(session(sess));
 
-const hbs = exphbs.create({}); //handelbars
-
-app.engine("handlebars", hbs.engine); //handelbars
-app.set("view engine", "handlebars"); //handelbars
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public"))); //joining files in plublic folder
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require("./controllers/"));
-// turn on connection to db and server
+app.use(routes);
+
 sequelize.sync({ force: false }).then(() => {
-  ////configuration parameter ({force: true}) means that the databases must sync with the model definitions and associations or they recreate!
-  app.listen(PORT, () => console.log("Now listening"));
+  app.listen(PORT, () => console.log('Now listening'));
 });
