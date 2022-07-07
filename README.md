@@ -40,7 +40,7 @@ Andre Blankholm
 #
 ## <ins>Links</ins>
 Github: https://github.com/AndreBlankholm/tech-blog    
-Live URL:
+Live URL:https://tech-blog-andre.herokuapp.com/
 
 ## License
 
